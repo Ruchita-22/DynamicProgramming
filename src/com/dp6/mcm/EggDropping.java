@@ -18,8 +18,8 @@ public class EggDropping {
 	//https://leetcode.com/problems/super-egg-drop/
 	
     private static int solve(int e, int f){
-        if(f==0 || f==1)    return f;
-        if(e==1)    return f;
+		if (f == 0 || f == 1)    return f;
+        if(e == 1)    return f;
 
         int ans = Integer.MAX_VALUE;
         for(int k=1;k<=f;k++){
@@ -30,8 +30,8 @@ public class EggDropping {
     }
     
     private static int solveMem1(int e, int f, int dp[][]){
-        if(f==0 || f==1)    return f;
-        if(e==1)    return f;
+		if (f == 0 || f == 1)    return f;
+        if(e == 1)    return f;
 
         if(dp[e][f] != -1) return dp[e][f];
 
@@ -60,23 +60,23 @@ public class EggDropping {
     }
     // Binary search
     private static int solveMem(int e, int f, int dp[][]){
-        if(f==0 || f==1)    return f;
-        if(e==1)    return f;
+		if (f == 0 || f == 1)	return f;
+        if(e == 1)    return f;
 
         if(dp[e][f] != -1) return dp[e][f];
 
         int ans = Integer.MAX_VALUE;
 
-        int i=0,j=f;
-        while(i<j){
-            int k = (i+j)/2;
-            int case1 = solveMem(e-1,k-1,dp);
-            int case2 = solveMem(e,f-k,dp);
-            int temp = 1 + Math.max(case1,case2);
-            ans = Math.min(ans, temp);
-            if(case1==case2) break;
+		int i = 0, j = f;
+		while (i < j) {
+			int k = (i + j) / 2;
+			int case1 = solveMem(e - 1, k - 1, dp);
+			int case2 = solveMem(e, f - k, dp);
+			int temp = 1 + Math.max(case1, case2);
+			ans = Math.min(ans, temp);
+			if (case1 == case2) break;
             else if(case1 < case2)  i = k+1;
-            else j=k;
+            else j = k;
 
         }
         return dp[e][f] = ans;

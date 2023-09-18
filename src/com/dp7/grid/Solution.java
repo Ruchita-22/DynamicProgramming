@@ -14,9 +14,9 @@ public class Solution {
 
         int dp[][] = new int[n+1][m+1];
         int ans=0;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(mat[i][j]==1)
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+                if(mat[i][j] == 1)
                     ans += solveMem(i,j,mat,dp);
             }
         }
@@ -26,25 +26,25 @@ public class Solution {
 
         if(!isValid(i,j,mat))   return 0;
 
-        int x = solve(i,j+1,mat);
-        int y = solve(i+1,j,mat);
-        int z = solve(i+1,j+1,mat);
+		int x = solve(i, j + 1, mat);
+		int y = solve(i + 1, j, mat);
+		int z = solve(i + 1, j + 1, mat);
         return 1 + Math.min(x,Math.min(y,z));
     }
     private static int solveMem(int i, int j,int mat[][], int dp[][]){
 
         if(!isValid(i,j,mat))   return 0;
         if(dp[i][j] != 0)   return dp[i][j];
-        int x = solveMem(i,j+1,mat,dp);
-        int y = solveMem(i+1,j,mat,dp);
-        int z = solveMem(i+1,j+1,mat,dp);
+		int x = solveMem(i, j + 1, mat, dp);
+		int y = solveMem(i + 1, j, mat, dp);
+		int z = solveMem(i + 1, j + 1, mat, dp);
 
         return dp[i][j] = 1 + Math.min(x,Math.min(y,z));
     }
     private static boolean isValid(int i, int j, int mat[][]){
         int n = mat.length;
         int m = mat[0].length;
-        if(i<0 || i>=n || j<0 || j>=m || mat[i][j]==0)  return false;
+		if (i < 0 || i >= n || j < 0 || j >= m || mat[i][j] == 0)  return false;
         else return true;
     }
     ////////////////////////////
@@ -57,12 +57,12 @@ public class Solution {
         int dp[][] = new int[n+1][m+1];
 
        int res = 0;
-        for(int i=0;i<n;i++){
-            for(int j=0;j<m;j++){
-                if(mat[i][j]=='1'){
-                    int ans = solveMem(i,j,mat,dp);
-                    res = Math.max(res,ans);
-                }    
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < m; j++) {
+				if (mat[i][j] == '1') {
+					int ans = solveMem(i, j, mat, dp);
+					res = Math.max(res, ans);
+				}
             }
         }
         return res * res;
@@ -73,15 +73,15 @@ public class Solution {
 
         if(dp[i][j] != 0)   return dp[i][j];
 
-        int x = solveMem(i,j+1,mat,dp);
-        int y = solveMem(i+1,j,mat,dp);
-        int z = solveMem(i+1,j+1,mat,dp);
-        return dp[i][j] = 1 + Math.min(x,Math.min(y,z));
+		int x = solveMem(i, j + 1, mat, dp);
+		int y = solveMem(i + 1, j, mat, dp);
+		int z = solveMem(i + 1, j + 1, mat, dp);
+		return dp[i][j] = 1 + Math.min(x, Math.min(y, z));
     }
     private static boolean isValid(int i, int j, char mat[][]){
         int n = mat.length;
         int m = mat[0].length;
-        if(i<0 || i>=n || j<0 || j>=m || mat[i][j]=='0')  return false;
+		if (i < 0 || i >= n || j < 0 || j >= m || mat[i][j] == '0')  return false;
         else return true;
     }
 

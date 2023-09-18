@@ -6,25 +6,27 @@ public class UniquePath2 {
 		// TODO Auto-generated method stub
 
 	}
+	//63. Unique Paths II
 	private static int solve(int i, int j,int grid[][]) {
 		
-		if(i<0 || j<0)	return 0;
-		if(grid[i][j]==1)	return 0;
-		if(i==0 && j==0)	return 1;
-		
-		int left = solve(i,j-1,grid);
-		int up = solve(i-1,j,grid);
-		
+		if (i < 0 || j < 0)		return 0; // outside grid
+		if (grid[i][j] == 1)	return 0; // obstacle
+		if (i == 0 && j == 0)	return 1;
+
+		int left = solve(i, j - 1, grid);
+		int up = solve(i - 1, j, grid);
+
 		return left+up;
 	}
 	private static int solveMem(int i, int j,int grid[][],int dp[][]) {
-		if(i<0 || j<0)	return 0;
-		if(grid[i][j]==1)	return 0;
-        if(i==0 && j==0)	return 1;
+		if (i < 0 || j < 0)		return 0; // outside grid
+		if (grid[i][j] == 1)	return 0; // obstacle
+		if (i == 0 && j == 0)	return 1;
 
 		if(dp[i][j] != -1)    return dp[i][j];
-		int left = solveMem(i,j-1,grid,dp);
-		int up = solveMem(i-1,j,grid,dp);
+		
+		int left = solveMem(i, j - 1, grid, dp);
+		int up = solveMem(i - 1, j, grid, dp);
 		
 		return dp[i][j] = left+up;
 	}

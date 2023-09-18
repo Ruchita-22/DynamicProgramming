@@ -17,14 +17,14 @@ public class MinSumPathInTriangle {
 	}
     private static int solve(int i, int j, int[][] arr){
     	int n = arr.length;
-        if(i==n-1) return arr[i][j];
+        if(i == n-1) return arr[i][j];
 
         return arr[i][j] +  Math.min ( solve(i+1,j, arr) , solve(i+1,j+1,arr));
 
     }
     private static int solveMem(int i, int j, int[][] arr,int dp[][]){
     	int n = arr.length;
-        if(i==n-1) return arr[i][j];
+        if(i == n-1) return arr[i][j];
         if(dp[i][j] != -1)   return dp[i][j];
 
         return dp[i][j] = arr[i][j] +  Math.min ( solveMem(i+1,j, arr,dp) , solveMem(i+1,j+1,arr,dp));

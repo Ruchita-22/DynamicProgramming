@@ -10,10 +10,11 @@ public class CombinationSum4 {
 	}
 	//377. Combination Sum IV
 	private static int solve(int[] arr,int sum){
-        if(sum<0)  return 0;
-        if(sum==0) return 1;
+        if(sum < 0)  return 0;
+        if(sum == 0) return 1;
         int ans = 0;
-        for(int i=0;i<arr.length;i++)
+        
+		for (int i = 0; i < arr.length; i++)
             ans += solve(arr,sum-arr[i]);
         return ans;   
     }

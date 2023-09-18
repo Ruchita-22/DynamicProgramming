@@ -22,16 +22,16 @@ public class WaysToSendTheSignal {
         return (int)ans;
     }
 	public long solve(int last,int n,long[][] dp){
-        if(n==1&&last==0)return 1;
-        if(n==1&&last==1)return 1;
+        if(n == 1 && last == 0)return 1;
+        if(n == 1 && last == 1)return 1;
         long mod = 1000000007;
-        if(dp[last][n]!=-1)return dp[last][n];
+        if(dp[last][n] != -1)return dp[last][n];
         long ans=0;
         if(last==0){
-            ans=solve(0,n-1,dp)+solve(1,n-1,dp);
+            ans = solve(0,n-1,dp)+solve(1,n-1,dp);
         }
-        else if(last==1){
-            ans=solve(0,n-1,dp);
+        else if(last == 1){
+            ans = solve(0,n-1,dp);
         }
         return dp[last][n]=ans%mod;
     }

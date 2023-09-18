@@ -32,38 +32,37 @@ public class PalindromicPartition {
             res.add(new ArrayList<>(temp));
             return;
         }
-        for(int k=i;k<n;k++){
-            if(isPalindrome(i,k,s)){
-                temp.add(s.substring(i,k+1));
-                solveMem(k+1,s,temp);
-                temp.remove(temp.size()-1);
-            }
+		for (int k = i; k < n; k++) {
+			if (isPalindrome(i, k, s)) {
+				temp.add(s.substring(i, k + 1));
+				solveMem(k + 1, s, temp);
+				temp.remove(temp.size() - 1);
+			}
         }
 	}
     
-	private static int solveMem(int i, int j,String str,int dp[][]) {
+	private static int solveMem(int i, int j, String str,int dp[][]) {
 		
-		if(i>=j)	return 0;
+		if(i >= j)	return 0;
 		
 		if(isPalindrome(i, j, str))	return 0;
 		
 		if(dp[i][j] != -1)	return dp[i][j];
 		
 		dp[i][j] = Integer.MAX_VALUE;
-		for(int k=i;k<j;k++) {
-			int temp = 1 + solveMem(i, k,str,dp) + solveMem(k+1, j,str,dp);
+		for (int k = i; k < j; k++) {
+			int temp = 1 + solveMem(i, k, str, dp) + solveMem(k + 1, j, str, dp);
 			dp[i][j] = Math.min(dp[i][j], temp);
 			
 		}
 		return dp[i][j];
 	}
 	private static boolean isPalindrome(int i, int j, String str) {
-		if(i==j)	return true;
-		while(i<j) {
+		if(i == j)	return true;
+		while(i < j) {
 			if(str.charAt(i) != str.charAt(j))	return false;
 			i++; 
 			j--;
-			
 		}
 		return true;
 		

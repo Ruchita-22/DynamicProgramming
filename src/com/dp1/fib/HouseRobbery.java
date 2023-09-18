@@ -15,14 +15,16 @@ public class HouseRobbery {
         Arrays.fill(dp,-1);
         return solveMem(n, arr,dp);
     }
-    private static int solveMem(int n, int arr[], int dp[]){
-        if(n<1) return 0;
-        if(n==1)    return arr[0];
-        if(dp[n] != -1) return dp[n];
-        int inc = arr[n-1] + solveMem(n-2,arr,dp);
-        int excl = solveMem(n-1,arr,dp);
-        return dp[n] = Math.max(inc,excl);
-    }
+
+	private static int solveMem(int n, int arr[], int dp[]) {
+		if (n < 1)		return 0;
+		if (n == 1)		return arr[0];
+		if (dp[n] != -1)	return dp[n];
+		
+		int inc = arr[n - 1] + solveMem(n - 2, arr, dp);
+		int excl = solveMem(n - 1, arr, dp);
+		return dp[n] = Math.max(inc, excl);
+	}
     
     //213. House Robber II
     public int rob1(int[] arr) {

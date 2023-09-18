@@ -6,15 +6,18 @@ public class MinNumberOfCoinChange {
 		// TODO Auto-generated method stub
 
 	}
+	// Min coin to make sum
 	private static int solveMem(int n,int sum, int coins[]) {
 	
-		if(sum==0)	return 0;
-		if(sum<0) return Integer.MAX_VALUE-1;
+		if(sum == 0)	return 0;
+		if(sum < 0) return Integer.MAX_VALUE-1;
 		
 		int min = Integer.MAX_VALUE-1;
+		
 		for(int i=0;i<coins.length;i++) {
-			int ans = 1 + solveMem(n,sum - coins[i],coins);
-			if(ans!=Integer.MAX_VALUE-1)
+			
+			int ans = 1 + solveMem(n, sum - coins[i],coins);
+			if(ans != Integer.MAX_VALUE-1)
 				min = Math.min(min,ans);
 		}
 		return min;

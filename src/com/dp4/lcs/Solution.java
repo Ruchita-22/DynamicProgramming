@@ -15,11 +15,9 @@ public class Solution {
 	}
 	private static int lcs(String X, String Y, int m, int n,int t[][]) {
 		//Base Condition
-		if( m == 0 || n == 0 )
-			return 0;
+		if( m == 0 || n == 0 )		return 0;
 		//memorization
-		if(t[m][n] != -1)
-			return t[m][n];
+		if(t[m][n] != -1)		return t[m][n];
 		//choice diagram
 		if(X.charAt(m-1)==Y.charAt(n-1))
 			return t[m][n] = 1+lcs(X,Y,m-1,n-1,t);
@@ -48,8 +46,8 @@ public class Solution {
 		return m+n - lcs(X,Y, m, n, t);
 		 
     }
-	public static int minInsertions(String s) {
-		if(s==null||s.length()==0 || isPalindrome(s))
+	public static int minInsertionsToMakePalindrome(String s) {
+		if (s == null || s.length() == 0 || isPalindrome(s))
 			return 0;
 		else {
 			String rev = reverse(s);
@@ -67,10 +65,8 @@ public class Solution {
 	public static int longestPalindromeSubseq(String s) {
         
         //base condition
-		if(s==null)
-			return 0;
-        if(isPalindrome(s))
-            return s.length();
+		if(s == null)	return 0;
+        if(isPalindrome(s))		return s.length();
         
         //reverse string
         String s1 = reverse(s);

@@ -17,10 +17,10 @@ public class MatrixChainMultiplication {
 	static int ans = Integer.MAX_VALUE;
 	private static int solve(int i, int j,int arr[]) {
 		
-		if(i>=j)	return 0;
+		if(i >= j)	return 0;
 		
-		for(int k=i;k<j;k++) {
-			int temp = solve(i, k,arr) + solve(k+1, j,arr)+ arr[i-1]*arr[k]*arr[j];
+		for (int k = i; k < j; k++) {
+			int temp = solve(i, k, arr) + solve(k + 1, j, arr) + arr[i - 1] * arr[k] * arr[j];
 			ans = Math.min(ans, temp);
 			
 		}
@@ -31,12 +31,12 @@ public class MatrixChainMultiplication {
 	
 	private static int solveMem(int i, int j,int arr[],int dp[][]) {
 		
-		if(i>=j)	return 0;
+		if(i >= j)	return 0;
 		if(dp[i][j] != -1)	return dp[i][j];
 		
 		dp[i][j] = Integer.MAX_VALUE;
-		for(int k=i;k<j;k++) {
-			int temp = arr[i-1]*arr[k]*arr[j] + solveMem(i, k,arr,dp) + solveMem(k+1, j,arr,dp);
+		for (int k = i; k < j; k++) {
+			int temp = arr[i - 1] * arr[k] * arr[j] + solveMem(i, k, arr, dp) + solveMem(k + 1, j, arr, dp);
 			dp[i][j] = Math.min(dp[i][j], temp);
 			
 		}
@@ -49,15 +49,15 @@ public class MatrixChainMultiplication {
 			Arrays.fill(t, Integer.MAX_VALUE);
 		
 		for(int i=1;i<arr.length;i++) {
-			for(int j=1;j<arr.length;j++) {
-				if(i==j)	dp[i][j] = 0;
+			for (int j = 1; j < arr.length; j++) {
+				if (i == j)	dp[i][j] = 0;
 			}
 		}
-		for(int i=1;i<arr.length;i++) {
-			for(int j=1;j<arr.length;j++) {
-				for(int k=i;k<j;k++) {
-					int temp = arr[i-1]*arr[k]*arr[j] + dp[i][k]+ dp[k+1][j];
-					dp[i][j] = Math.min(dp[i][j], temp);	
+		for (int i = 1; i < arr.length; i++) {
+			for (int j = 1; j < arr.length; j++) {
+				for (int k = i; k < j; k++) {
+					int temp = arr[i - 1] * arr[k] * arr[j] + dp[i][k] + dp[k + 1][j];
+					dp[i][j] = Math.min(dp[i][j], temp);
 				}
 			}
 		}

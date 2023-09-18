@@ -20,7 +20,7 @@ public class MinimumNumberofSquares {
         if(dp[n] != -1)   return dp[n];
         int ans = n;
 
-        for(int i=1;i*i<=n;i++){
+		for (int i = 1; i * i <= n; i++) {
             ans = Math.min(ans, 1 + solve(n - (i*i),dp));
         }
         return dp[n] = ans;
